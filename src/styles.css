@@ -141,3 +141,11 @@
 @utility animate-pulse-dot {
   animation: trt-pulse-dot 1.6s ease-in-out infinite;
 }
+
+/* page-top: offset for fixed nav + ticker bar */
+@utility page-top {
+  padding-top: calc(4rem + 36px + 3rem);
+}
+@media (min-width: 768px) {
+  .page-top { padding-top: calc(5rem + 36px + 3rem); }
+}

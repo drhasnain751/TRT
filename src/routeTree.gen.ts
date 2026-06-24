@@ -13,10 +13,14 @@ import { Route as WhyTrtRouteImport } from './routes/why-trt'
 import { Route as U23RouteImport } from './routes/u23'
 import { Route as The24RouteImport } from './routes/the-24'
 import { Route as SponsorshipRouteImport } from './routes/sponsorship'
+import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as MembershipRouteImport } from './routes/membership'
 import { Route as MediaRouteImport } from './routes/media'
+import { Route as InvestorsRouteImport } from './routes/investors'
 import { Route as FranchisesRouteImport } from './routes/franchises'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CommunityRouteImport } from './routes/community'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FranchisesSlugRouteImport } from './routes/franchises.$slug'
 
@@ -40,14 +44,29 @@ const SponsorshipRoute = SponsorshipRouteImport.update({
   path: '/sponsorship',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SponsorsRoute = SponsorsRouteImport.update({
+  id: '/sponsors',
+  path: '/sponsors',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MembershipRoute = MembershipRouteImport.update({
+  id: '/membership',
+  path: '/membership',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MediaRoute = MediaRouteImport.update({
   id: '/media',
   path: '/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InvestorsRoute = InvestorsRouteImport.update({
+  id: '/investors',
+  path: '/investors',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FranchisesRoute = FranchisesRouteImport.update({
@@ -58,6 +77,11 @@ const FranchisesRoute = FranchisesRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -73,10 +97,14 @@ const FranchisesSlugRoute = FranchisesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/community': typeof CommunityRoute
   '/contact': typeof ContactRoute
   '/franchises': typeof FranchisesRouteWithChildren
+  '/investors': typeof InvestorsRoute
   '/media': typeof MediaRoute
+  '/membership': typeof MembershipRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sponsors': typeof SponsorsRoute
   '/sponsorship': typeof SponsorshipRoute
   '/the-24': typeof The24Route
   '/u23': typeof U23Route
@@ -85,10 +113,14 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/community': typeof CommunityRoute
   '/contact': typeof ContactRoute
   '/franchises': typeof FranchisesRouteWithChildren
+  '/investors': typeof InvestorsRoute
   '/media': typeof MediaRoute
+  '/membership': typeof MembershipRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sponsors': typeof SponsorsRoute
   '/sponsorship': typeof SponsorshipRoute
   '/the-24': typeof The24Route
   '/u23': typeof U23Route
@@ -98,10 +130,14 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/community': typeof CommunityRoute
   '/contact': typeof ContactRoute
   '/franchises': typeof FranchisesRouteWithChildren
+  '/investors': typeof InvestorsRoute
   '/media': typeof MediaRoute
+  '/membership': typeof MembershipRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sponsors': typeof SponsorsRoute
   '/sponsorship': typeof SponsorshipRoute
   '/the-24': typeof The24Route
   '/u23': typeof U23Route
@@ -112,10 +148,14 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/community'
     | '/contact'
     | '/franchises'
+    | '/investors'
     | '/media'
+    | '/membership'
     | '/sitemap.xml'
+    | '/sponsors'
     | '/sponsorship'
     | '/the-24'
     | '/u23'
@@ -124,10 +164,14 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/community'
     | '/contact'
     | '/franchises'
+    | '/investors'
     | '/media'
+    | '/membership'
     | '/sitemap.xml'
+    | '/sponsors'
     | '/sponsorship'
     | '/the-24'
     | '/u23'
@@ -136,10 +180,14 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/community'
     | '/contact'
     | '/franchises'
+    | '/investors'
     | '/media'
+    | '/membership'
     | '/sitemap.xml'
+    | '/sponsors'
     | '/sponsorship'
     | '/the-24'
     | '/u23'
@@ -149,10 +197,14 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CommunityRoute: typeof CommunityRoute
   ContactRoute: typeof ContactRoute
   FranchisesRoute: typeof FranchisesRouteWithChildren
+  InvestorsRoute: typeof InvestorsRoute
   MediaRoute: typeof MediaRoute
+  MembershipRoute: typeof MembershipRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SponsorsRoute: typeof SponsorsRoute
   SponsorshipRoute: typeof SponsorshipRoute
   The24Route: typeof The24Route
   U23Route: typeof U23Route
@@ -189,6 +241,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SponsorshipRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sponsors': {
+      id: '/sponsors'
+      path: '/sponsors'
+      fullPath: '/sponsors'
+      preLoaderRoute: typeof SponsorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -196,11 +255,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/membership': {
+      id: '/membership'
+      path: '/membership'
+      fullPath: '/membership'
+      preLoaderRoute: typeof MembershipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/media': {
       id: '/media'
       path: '/media'
       fullPath: '/media'
       preLoaderRoute: typeof MediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/investors': {
+      id: '/investors'
+      path: '/investors'
+      fullPath: '/investors'
+      preLoaderRoute: typeof InvestorsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/franchises': {
@@ -215,6 +288,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -248,10 +328,14 @@ const FranchisesRouteWithChildren = FranchisesRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CommunityRoute: CommunityRoute,
   ContactRoute: ContactRoute,
   FranchisesRoute: FranchisesRouteWithChildren,
+  InvestorsRoute: InvestorsRoute,
   MediaRoute: MediaRoute,
+  MembershipRoute: MembershipRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SponsorsRoute: SponsorsRoute,
   SponsorshipRoute: SponsorshipRoute,
   The24Route: The24Route,
   U23Route: U23Route,
