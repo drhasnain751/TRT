@@ -1,15 +1,17 @@
 import { cp, mkdir, writeFile } from 'fs/promises'
 import { existsSync } from 'fs'
+import { build } from 'esbuild'
 
 const OUT = '.vercel/output'
+const FUNC = `${OUT}/functions/index.func`
 
 async function main() {
   console.log('Building Vercel output...')
 
   await mkdir(`${OUT}/static`, { recursive: true })
-  await mkdir(`${OUT}/functions/index.func`, { recursive: true })
+  await mkdir(`${FUNC}/bundle`, { recursive: true })
 
-  // Vercel Build Output API v3 config
+  // Vercel Build Output API v3
   await writeFile(`${OUT}/config.json`, JSON.stringify({
     version: 3,
     routes: [
@@ -25,23 +27,64 @@ async function main() {
     console.log('Client assets -> .vercel/output/static')
   }
 
-  // Edge function wrapper — adapts TanStack Start's fetch handler to Vercel Edge
-  await writeFile(`${OUT}/functions/index.func/entry.js`,
-`import handler from './server.js'
-export default (request) => handler.fetch(request, {}, {})
-export const config = { runtime: 'edge' }
+  // Bundle server.js + ALL dependencies into self-contained chunks
+  await build({
+    entryPoints: ['dist/server/server.js'],
+    bundle: true,
+    platform: 'node',
+    target: 'node20',
+    format: 'esm',
+    outdir: `${FUNC}/bundle`,
+    splitting: true,
+    chunkNames: 'chunks/[name]-[hash]',
+    allowOverwrite: true,
+    minify: false,
+    define: { 'process.env.NODE_ENV': '"production"' },
+  })
+  console.log('Server bundled with all dependencies')
+
+  // Node.js wrapper: bridges Fetch API handler -> Vercel Node req/res
+  await writeFile(`${FUNC}/entry.js`, `
+import handler from './bundle/server.js'
+
+export default async function(req, res) {
+  const proto = (req.headers['x-forwarded-proto'] || 'https').split(',')[0].trim()
+  const host = req.headers['x-forwarded-host'] || req.headers.host || 'localhost'
+  const url = new URL(req.url, proto + '://' + host)
+
+  const headers = new Headers()
+  for (const [k, v] of Object.entries(req.headers)) {
+    if (v != null) Array.isArray(v) ? v.forEach(x => headers.append(k, x)) : headers.set(k, String(v))
+  }
+
+  let body
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    const chunks = []
+    for await (const c of req) chunks.push(c)
+    const buf = Buffer.concat(chunks)
+    if (buf.length) body = buf
+  }
+
+  try {
+    const response = await handler.fetch(new Request(url, { method: req.method, headers, body }), process.env, {})
+    res.statusCode = response.status
+    response.headers.forEach((v, k) => res.setHeader(k, v))
+    res.end(Buffer.from(await response.arrayBuffer()))
+  } catch (e) {
+    console.error(e)
+    res.statusCode = 500
+    res.end('Internal Server Error')
+  }
+}
 `)
 
-  await writeFile(`${OUT}/functions/index.func/.vc-config.json`, JSON.stringify({
-    runtime: 'edge',
-    entrypoint: 'entry.js'
+  // Node.js runtime (not Edge) — supports all npm packages
+  await writeFile(`${FUNC}/.vc-config.json`, JSON.stringify({
+    runtime: 'nodejs20.x',
+    handler: 'entry.js',
+    launcherType: 'Nodejs',
+    maxDuration: 30
   }, null, 2))
-
-  // Copy server bundle into the function directory
-  if (existsSync('dist/server')) {
-    await cp('dist/server', `${OUT}/functions/index.func`, { recursive: true })
-    console.log('Server bundle -> .vercel/output/functions/index.func')
-  }
 
   console.log('Vercel output ready!')
 }
