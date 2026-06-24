@@ -150,7 +150,7 @@ function CommunityPage() {
           </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10">
             {[
-              { city: "Downtown Toronto", slug: "downtown-toronto", initiative: "Regent Park · Alexandra Park · Lawrence Heights clinics" },
+              { city: "Downtown Toronto", slug: "downtown-toronto", initiative: "Regent Park | Alexandra Park | Lawrence Heights clinics" },
               { city: "Scarborough", slug: "scarborough", initiative: "Malvern Community Centre open gym programs" },
               { city: "Brampton", slug: "brampton", initiative: "Peel District School Board youth camps" },
               { city: "Vaughan", slug: "vaughan", initiative: "York Region youth development pipeline" },

@@ -9,10 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WhyTrtRouteImport } from './routes/why-trt'
-import { Route as U23RouteImport } from './routes/u23'
-import { Route as The24RouteImport } from './routes/the-24'
-import { Route as SponsorshipRouteImport } from './routes/sponsorship'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as MembershipRouteImport } from './routes/membership'
@@ -24,26 +20,6 @@ import { Route as CommunityRouteImport } from './routes/community'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FranchisesSlugRouteImport } from './routes/franchises.$slug'
 
-const WhyTrtRoute = WhyTrtRouteImport.update({
-  id: '/why-trt',
-  path: '/why-trt',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const U23Route = U23RouteImport.update({
-  id: '/u23',
-  path: '/u23',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const The24Route = The24RouteImport.update({
-  id: '/the-24',
-  path: '/the-24',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SponsorshipRoute = SponsorshipRouteImport.update({
-  id: '/sponsorship',
-  path: '/sponsorship',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SponsorsRoute = SponsorsRouteImport.update({
   id: '/sponsors',
   path: '/sponsors',
@@ -105,10 +81,6 @@ export interface FileRoutesByFullPath {
   '/membership': typeof MembershipRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sponsors': typeof SponsorsRoute
-  '/sponsorship': typeof SponsorshipRoute
-  '/the-24': typeof The24Route
-  '/u23': typeof U23Route
-  '/why-trt': typeof WhyTrtRoute
   '/franchises/$slug': typeof FranchisesSlugRoute
 }
 export interface FileRoutesByTo {
@@ -121,10 +93,6 @@ export interface FileRoutesByTo {
   '/membership': typeof MembershipRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sponsors': typeof SponsorsRoute
-  '/sponsorship': typeof SponsorshipRoute
-  '/the-24': typeof The24Route
-  '/u23': typeof U23Route
-  '/why-trt': typeof WhyTrtRoute
   '/franchises/$slug': typeof FranchisesSlugRoute
 }
 export interface FileRoutesById {
@@ -138,10 +106,6 @@ export interface FileRoutesById {
   '/membership': typeof MembershipRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sponsors': typeof SponsorsRoute
-  '/sponsorship': typeof SponsorshipRoute
-  '/the-24': typeof The24Route
-  '/u23': typeof U23Route
-  '/why-trt': typeof WhyTrtRoute
   '/franchises/$slug': typeof FranchisesSlugRoute
 }
 export interface FileRouteTypes {
@@ -156,10 +120,6 @@ export interface FileRouteTypes {
     | '/membership'
     | '/sitemap.xml'
     | '/sponsors'
-    | '/sponsorship'
-    | '/the-24'
-    | '/u23'
-    | '/why-trt'
     | '/franchises/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -172,10 +132,6 @@ export interface FileRouteTypes {
     | '/membership'
     | '/sitemap.xml'
     | '/sponsors'
-    | '/sponsorship'
-    | '/the-24'
-    | '/u23'
-    | '/why-trt'
     | '/franchises/$slug'
   id:
     | '__root__'
@@ -188,10 +144,6 @@ export interface FileRouteTypes {
     | '/membership'
     | '/sitemap.xml'
     | '/sponsors'
-    | '/sponsorship'
-    | '/the-24'
-    | '/u23'
-    | '/why-trt'
     | '/franchises/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -205,42 +157,10 @@ export interface RootRouteChildren {
   MembershipRoute: typeof MembershipRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SponsorsRoute: typeof SponsorsRoute
-  SponsorshipRoute: typeof SponsorshipRoute
-  The24Route: typeof The24Route
-  U23Route: typeof U23Route
-  WhyTrtRoute: typeof WhyTrtRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/why-trt': {
-      id: '/why-trt'
-      path: '/why-trt'
-      fullPath: '/why-trt'
-      preLoaderRoute: typeof WhyTrtRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/u23': {
-      id: '/u23'
-      path: '/u23'
-      fullPath: '/u23'
-      preLoaderRoute: typeof U23RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/the-24': {
-      id: '/the-24'
-      path: '/the-24'
-      fullPath: '/the-24'
-      preLoaderRoute: typeof The24RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sponsorship': {
-      id: '/sponsorship'
-      path: '/sponsorship'
-      fullPath: '/sponsorship'
-      preLoaderRoute: typeof SponsorshipRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/sponsors': {
       id: '/sponsors'
       path: '/sponsors'
@@ -336,10 +256,6 @@ const rootRouteChildren: RootRouteChildren = {
   MembershipRoute: MembershipRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SponsorsRoute: SponsorsRoute,
-  SponsorshipRoute: SponsorshipRoute,
-  The24Route: The24Route,
-  U23Route: U23Route,
-  WhyTrtRoute: WhyTrtRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

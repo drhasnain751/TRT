@@ -259,7 +259,7 @@ function FranchisePage() {
                     <span className="font-display text-3xl text-trt-red w-12 shrink-0">{p.number}</span>
                     <div className="flex-1 min-w-0">
                       <p className="font-display text-xl group-hover:text-trt-red transition-colors truncate">{p.name}</p>
-                      <p className="text-xs text-white/50 mt-0.5">{p.position} · {p.height} · {p.hometown.split(",")[0]}</p>
+                      <p className="text-xs text-white/50 mt-0.5">{p.position} | {p.height} | {p.hometown.split(",")[0]}</p>
                     </div>
                     <ChevronRight size={16} className="text-white/30 group-hover:text-trt-red transition-colors shrink-0" />
                   </button>

@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { TrtLogo } from "./TrtLogo";
 
 export function Footer() {
   return (
@@ -7,11 +8,11 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <Link to="/" className="flex items-center gap-3">
-              <span className="relative flex h-10 w-10 items-center justify-center">
-                <span className="absolute inset-0 bg-trt-red opacity-20 rounded-sm" />
-                <span className="font-display text-xl text-trt-red leading-none">T</span>
-              </span>
-              <span className="font-display text-3xl tracking-[0.06em]">TRT</span>
+              <TrtLogo className="h-12 w-auto" />
+              <div className="flex flex-col">
+                <span className="font-display text-xl tracking-[0.06em] leading-none">THE REAL</span>
+                <span className="font-display text-xs tracking-[0.25em] text-trt-red mt-0.5 leading-none">TORONTO</span>
+              </div>
             </Link>
             <p className="mt-6 font-display text-4xl md:text-5xl leading-[0.9] text-balance">
               The Real Toronto<br />
@@ -68,7 +69,7 @@ export function Footer() {
 
         <div className="mt-20 flex flex-col md:flex-row justify-between gap-6 pt-8 border-t border-white/10 text-[11px] uppercase tracking-[0.2em] text-white/40">
           <span>© {new Date().getFullYear()} The Real Toronto Basketball League</span>
-          <span>Greater Toronto Area · Ontario, Canada</span>
+          <span>Greater Toronto Area | Ontario, Canada</span>
         </div>
       </div>
     </footer>

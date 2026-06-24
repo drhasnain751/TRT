@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { TrtLogo } from "./TrtLogo";
 
 const FRANCHISE_LINKS = [
   { slug: "brampton", city: "Brampton Kings" },
@@ -37,18 +38,18 @@ export function Nav() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled || open
-          ? "bg-black/90 backdrop-blur-xl border-b border-white/10"
+          ? "bg-black/95 backdrop-blur-xl border-b border-white/10"
           : "bg-transparent"
       }`}
     >
       <div className="container-x flex h-16 md:h-20 items-center justify-between">
-        {/* Logo */}
+        {/* Branded TRT Shield Logo */}
         <Link to="/" className="flex items-center gap-3 group" aria-label="TRT home">
-          <span className="relative flex h-8 w-8 items-center justify-center">
-            <span className="absolute inset-0 bg-trt-red opacity-20 rounded-sm" />
-            <span className="font-display text-lg text-trt-red leading-none">T</span>
-          </span>
-          <span className="font-display text-2xl tracking-[0.06em]">TRT</span>
+          <TrtLogo className="h-10 md:h-12 w-auto transition-transform group-hover:scale-105" />
+          <div className="flex flex-col">
+            <span className="font-display text-lg md:text-xl tracking-[0.06em] leading-none">THE REAL</span>
+            <span className="font-display text-xs tracking-[0.25em] text-trt-red mt-0.5 leading-none">TORONTO</span>
+          </div>
         </Link>
 
         {/* Desktop nav */}
