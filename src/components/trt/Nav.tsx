@@ -12,7 +12,13 @@ const FRANCHISE_LINKS = [
   { slug: "downtown-toronto", city: "Downtown Royals" },
 ];
 
-const navLinks = [
+interface NavLinkItem {
+  to: string;
+  label: string;
+  hasSub?: boolean;
+}
+
+const navLinks: readonly NavLinkItem[] = [
   { to: "/", label: "Home" },
   { to: "/franchises", label: "Franchises", hasSub: true },
   { to: "/membership", label: "TRT Membership" },
@@ -20,7 +26,7 @@ const navLinks = [
   { to: "/investors", label: "Investors" },
   { to: "/community", label: "Community" },
   { to: "/contact", label: "Contact Us" },
-] as const;
+];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);

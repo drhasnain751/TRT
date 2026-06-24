@@ -11,6 +11,10 @@ import heroImg from "@/assets/hero-toronto.jpg";
 import playerImg from "@/assets/player-shadow.jpg";
 import courtImg from "@/assets/court-aerial.jpg";
 import crowdImg from "@/assets/crowd-energy.jpg";
+import hoodieImg from "@/assets/trt-classic-hoodie.png";
+import capImg from "@/assets/trt-monogram-cap.png";
+import jerseyImg from "@/assets/royals-inaugural-jersey.png";
+import ballImg from "@/assets/trt-leather-ball.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -345,10 +349,10 @@ function TicketsSection() {
 /* ── Store Section ────────────────────────────────── */
 function StoreSection() {
   const products = [
-    { name: "TRT Classic Hoodie", price: "$85.00", desc: "Heavyweight black fleece with embroidered red crest logo." },
-    { name: "TRT Monogram Cap", price: "$35.00", desc: "Structured 6-panel snapback featuring the clean shield emblem." },
-    { name: "Royals Inaugural Jersey", price: "$110.00", desc: "Official home jersey for the Downtown Royals. Breathable mesh." },
-    { name: "TRT Composite Leather Ball", price: "$75.00", desc: "Indoor/Outdoor official size 7 composite leather match ball." },
+    { name: "TRT Classic Hoodie", price: "$85.00", desc: "Heavyweight black fleece with embroidered red crest logo.", img: hoodieImg },
+    { name: "TRT Monogram Cap", price: "$35.00", desc: "Structured 6-panel snapback featuring the clean shield emblem.", img: capImg },
+    { name: "Royals Inaugural Jersey", price: "$110.00", desc: "Official home jersey for the Downtown Royals. Breathable mesh.", img: jerseyImg },
+    { name: "TRT Composite Leather Ball", price: "$75.00", desc: "Indoor/Outdoor official size 7 composite leather match ball.", img: ballImg },
   ];
 
   return (
@@ -367,7 +371,12 @@ function StoreSection() {
             <Reveal key={p.name} delay={i * 0.05}>
               <div className="border border-white/10 bg-white/[0.01] hover:border-trt-red/30 transition-colors p-6 flex flex-col h-full group">
                 <div className="aspect-square bg-white/[0.02] border border-white/5 mb-6 flex items-center justify-center relative overflow-hidden">
-                  <ShoppingBag className="text-white/10 group-hover:text-trt-red/30 transition-colors" size={64} />
+                  <img
+                    src={p.img}
+                    alt={p.name}
+                    className="h-full w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                    loading="lazy"
+                  />
                   <span className="absolute bottom-3 left-3 text-[10px] uppercase tracking-wider text-trt-red bg-trt-red/10 border border-trt-red/20 px-2 py-0.5">
                     Pre-Order
                   </span>

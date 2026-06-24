@@ -9,6 +9,6 @@ export default defineConfig({
     tailwindcss(),
     tanstackStart({
       target: 'vercel',
-    }),
+    } as any),
   ],
 })
