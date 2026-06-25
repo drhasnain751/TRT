@@ -16,33 +16,6 @@ export const Route = createFileRoute("/investors")({
   component: InvestorsPage,
 });
 
-const reasons = [
-  {
-    title: "Underserved Market",
-    desc: "Toronto is the most basketball-crazy city in Canada with no professional league serving the GTA community market. TRT fills a genuine gap.",
-  },
-  {
-    title: "Scalable Model",
-    desc: "Six franchises are the foundation. The infrastructure, media rights, and community relationships we're building have significant expansion upside.",
-  },
-  {
-    title: "Media & Content",
-    desc: "Content-first approach. Every game, every player, every franchise has a story. TRT is building a media brand alongside a league.",
-  },
-  {
-    title: "Community Equity",
-    desc: "Brand equity built at the grassroots level is durable. We're not buying attention. We're earning it in the neighbourhoods.",
-  },
-  {
-    title: "Talent Pipeline",
-    desc: "The U23 pathway, franchise relationships, and TRT alumni network become real IP. Scouts and global leagues will come to us.",
-  },
-  {
-    title: "First-Mover Advantage",
-    desc: "No one has built this in Toronto. TRT has the vision, the community relationships, and the momentum to define the category.",
-  },
-];
-
 function InvestorsPage() {
   return (
     <div className="bg-black text-white">
@@ -76,25 +49,6 @@ function InvestorsPage() {
               Request Investment Deck <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </Reveal>
-        </div>
-      </section>
-
-      {/* Why invest */}
-      <section className="border-t border-white/10 py-24 md:py-36">
-        <div className="container-x">
-          <Reveal>
-            <h2 className="font-display text-5xl md:text-6xl leading-[0.9] mb-16">Why TRT</h2>
-          </Reveal>
-          <div className="grid md:grid-cols-3 gap-px bg-white/10">
-            {reasons.map((r, i) => (
-              <Reveal key={r.title} delay={i * 0.07}>
-                <div className="bg-black p-8 md:p-10">
-                  <h3 className="font-display text-3xl leading-[0.95]">{r.title}</h3>
-                  <p className="mt-4 text-white/60 leading-relaxed">{r.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
