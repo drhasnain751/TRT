@@ -55,13 +55,14 @@ function SponsorsPage() {
           <div className="absolute inset-0 bg-black" />
         </div>
         <div className="container-x relative">
-          <Reveal>
-            <p className="text-[11px] uppercase tracking-[0.25em] text-white">Sponsorship</p>
+        <Reveal>
             <h1 className="font-display mt-6 text-[10vw] md:text-[6.5vw] leading-[0.9]">
-              Build with<br />
-              <span className="text-trt-red">TRT.</span>
+              Sponsorship<br />
             </h1>
+                        <p className="text-[11px] uppercase tracking-[0.25em] text-white">Build with TRT</p>
+
           </Reveal>
+          
           <Reveal delay={0.15}>
             <p className="mt-8 max-w-xl text-lg text-white/70 leading-relaxed">
               TRT connects brands with Toronto's basketball community. Six franchise markets. Passionate fans. Authentic stories. Real impact.
