@@ -44,7 +44,7 @@ function Index() {
       <FeaturedStory />
 
       {/* Franchise Grid / Teams Selection */}
-      {/* <FranchiseGrid /> */}
+       <FranchiseGrid /> 
 
       {/* New: Tickets section */}
       <TicketsSection />
@@ -249,7 +249,7 @@ function FeaturedStory() {
 }
 
 /* ── Franchise Grid ───────────────────────────────── */
-/* function FranchiseGrid() {
+ function FranchiseGrid() {
   return (
     <section className="border-t border-white/10 py-20 bg-black relative">
       <div className="container-x">
@@ -289,7 +289,7 @@ function FeaturedStory() {
       </div>
     </section>
   );
-} *
+}
 
 /* ── Tickets Section ──────────────────────────────── */
 function TicketsSection() {
