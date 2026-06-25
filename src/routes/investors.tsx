@@ -65,7 +65,7 @@ function InvestorsPage() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="mt-8 max-w-xl text-lg text-white/70 leading-relaxed">
-              The Real Toronto Basketball League is seeking strategic capital partners to help build something the city has never seen. We are not looking for passive investors — we are looking for builders.
+              The Real Toronto Basketball League is seeking strategic capital partners to help build something the city has never seen. We are looking for people who want to see Toronto grow the right way.
             </p>
           </Reveal>
           <Reveal delay={0.25}>

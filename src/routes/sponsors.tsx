@@ -56,8 +56,8 @@ function SponsorsPage() {
         </div>
         <div className="container-x relative">
           <Reveal>
-            <p className="text-[11px] uppercase tracking-[0.25em] text-trt-red">Sponsorship</p>
-            <h1 className="font-display mt-6 text-[14vw] md:text-[9vw] leading-[0.85]">
+            <p className="text-[11px] uppercase tracking-[0.25em] text-white">Sponsorship</p>
+            <h1 className="font-display mt-6 text-[10vw] md:text-[6.5vw] leading-[0.9]">
               Build with<br />
               <span className="text-trt-red">TRT.</span>
             </h1>
@@ -72,7 +72,7 @@ function SponsorsPage() {
               to="/contact"
               className="mt-10 group inline-flex items-center gap-2 px-6 py-3.5 text-[11px] uppercase tracking-[0.18em] font-semibold bg-trt-red text-white hover:bg-white hover:text-black transition-all"
             >
-              Become a Partner <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+              Become a Sponsor <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </Reveal>
         </div>

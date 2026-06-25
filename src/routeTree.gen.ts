@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as The24RouteImport } from './routes/the-24'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as MembershipRouteImport } from './routes/membership'
@@ -20,6 +21,11 @@ import { Route as CommunityRouteImport } from './routes/community'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FranchisesSlugRouteImport } from './routes/franchises.$slug'
 
+const The24Route = The24RouteImport.update({
+  id: '/the-24',
+  path: '/the-24',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SponsorsRoute = SponsorsRouteImport.update({
   id: '/sponsors',
   path: '/sponsors',
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/membership': typeof MembershipRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sponsors': typeof SponsorsRoute
+  '/the-24': typeof The24Route
   '/franchises/$slug': typeof FranchisesSlugRoute
 }
 export interface FileRoutesByTo {
@@ -93,6 +100,7 @@ export interface FileRoutesByTo {
   '/membership': typeof MembershipRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sponsors': typeof SponsorsRoute
+  '/the-24': typeof The24Route
   '/franchises/$slug': typeof FranchisesSlugRoute
 }
 export interface FileRoutesById {
@@ -106,6 +114,7 @@ export interface FileRoutesById {
   '/membership': typeof MembershipRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sponsors': typeof SponsorsRoute
+  '/the-24': typeof The24Route
   '/franchises/$slug': typeof FranchisesSlugRoute
 }
 export interface FileRouteTypes {
@@ -120,6 +129,7 @@ export interface FileRouteTypes {
     | '/membership'
     | '/sitemap.xml'
     | '/sponsors'
+    | '/the-24'
     | '/franchises/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -132,6 +142,7 @@ export interface FileRouteTypes {
     | '/membership'
     | '/sitemap.xml'
     | '/sponsors'
+    | '/the-24'
     | '/franchises/$slug'
   id:
     | '__root__'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/membership'
     | '/sitemap.xml'
     | '/sponsors'
+    | '/the-24'
     | '/franchises/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -157,10 +169,18 @@ export interface RootRouteChildren {
   MembershipRoute: typeof MembershipRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SponsorsRoute: typeof SponsorsRoute
+  The24Route: typeof The24Route
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/the-24': {
+      id: '/the-24'
+      path: '/the-24'
+      fullPath: '/the-24'
+      preLoaderRoute: typeof The24RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sponsors': {
       id: '/sponsors'
       path: '/sponsors'
@@ -256,6 +276,7 @@ const rootRouteChildren: RootRouteChildren = {
   MembershipRoute: MembershipRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SponsorsRoute: SponsorsRoute,
+  The24Route: The24Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

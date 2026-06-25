@@ -22,6 +22,7 @@ const navLinks: readonly NavLinkItem[] = [
   { to: "/", label: "Home" },
   { to: "/franchises", label: "Franchises", hasSub: true },
   { to: "/membership", label: "TRT Membership" },
+  { to: "/the-24", label: "The 24" },
   { to: "/sponsors", label: "Sponsors" },
   { to: "/investors", label: "Investors" },
   { to: "/community", label: "Community" },
@@ -160,6 +161,7 @@ export function Nav() {
             </div>
             {[
               { to: "/membership", label: "TRT Membership" },
+              { to: "/the-24", label: "The 24" },
               { to: "/sponsors", label: "Sponsors" },
               { to: "/investors", label: "Investors" },
               { to: "/community", label: "Community" },

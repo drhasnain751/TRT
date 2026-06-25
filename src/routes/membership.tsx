@@ -3,63 +3,56 @@ import { Nav } from "@/components/trt/Nav";
 import { Footer } from "@/components/trt/Footer";
 import { Reveal } from "@/components/trt/Reveal";
 import { ArrowRight, Check } from "lucide-react";
-import the24Bg from "@/assets/the-24-bg.jpg";
+import courtImg from "@/assets/court-aerial.jpg";
 
 export const Route = createFileRoute("/membership")({
   head: () => ({
     meta: [
-      { title: "TRT Membership — Join The 24" },
-      { name: "description", content: "Become a founding member of The Real Toronto Basketball League. The 24 — a private Founders Circle. 24 legacy positions, once filled, never reopened." },
+      { title: "TRT Membership — Join the Movement" },
+      { name: "description", content: "Join The Real Toronto Basketball League. Explore Club memberships, Season Passes, and Courtside VIP access." },
     ],
     links: [{ rel: "canonical", href: "/membership" }],
   }),
   component: MembershipPage,
 });
 
-const TIERS_DISPLAY = [
+const MEMBERSHIP_TIERS = [
   {
-    positions: "1 – 4",
-    price: "$5,000",
-    label: "Pioneer",
+    price: "$120",
+    period: "year",
+    label: "Club Member",
+    desc: "For the dedicated fans who want to support from the stands and own the gear.",
     perks: [
-      "Founding member recognition",
-      "Season tickets — inaugural year",
-      "Access to all six franchise launches",
-      "TRT Founders jersey",
-      "Private founders community",
+      "Exclusive TRT member t-shirt & sticker pack",
+      "10% discount on official TRT merchandise",
+      "Priority presale access to all single-game tickets",
+      "Access to member-only digital community",
     ],
   },
   {
-    positions: "5 – 12",
-    price: "$7,500",
-    label: "Builder",
+    price: "$450",
+    period: "year",
+    label: "Season Pass",
+    desc: "Guaranteed seat for every baseline-to-baseline moment of the inaugural season.",
     perks: [
-      "All Pioneer perks",
-      "VIP courtside access",
-      "Named on franchise wall of legacy",
-      "Invitation to league operations briefings",
+      "All Club Member perks included",
+      "Season ticket to all home games of your chosen franchise",
+      "Official TRT Member jacquard knit scarf",
+      "Exclusive invitation to pre-season team meet-and-greets",
     ],
+    featured: true,
   },
   {
-    positions: "13 – 20",
-    price: "$10,000",
-    label: "Architect",
+    price: "$1,800",
+    period: "year",
+    label: "Courtside VIP",
+    desc: "The ultimate TRT experience. Front-row views and elite level access.",
     perks: [
-      "All Builder perks",
-      "Franchise advisory input",
-      "Early access to investment rounds",
-      "Annual founders dinner",
-    ],
-  },
-  {
-    positions: "21 – 24",
-    price: "$15,000",
-    label: "Legacy",
-    perks: [
-      "All Architect perks",
-      "Lifetime recognition as founding Legacy member",
-      "Access to TRT's inner league circle",
-      "Direct line to league leadership",
+      "All Season Pass perks included",
+      "Guaranteed premium courtside seat for all home games",
+      "VIP Lounge hospitality access (food & beverage)",
+      "Limited-edition TRT leather varsity jacket",
+      "Invitation to private post-game league dinners",
     ],
   },
 ];
@@ -72,93 +65,76 @@ function MembershipPage() {
       {/* Hero */}
       <section className="relative pt-40 pb-24 md:pt-56 md:pb-36 overflow-hidden">
         <div className="absolute inset-0">
-          <img src={the24Bg} alt="" className="h-full w-full object-cover opacity-40" />
+          <img src={courtImg} alt="" className="h-full w-full object-cover opacity-35" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black" />
         </div>
         <div className="container-x relative">
           <Reveal>
-            <p className="text-[11px] uppercase tracking-[0.25em] text-trt-red">Members Only</p>
-            <h1 className="font-display mt-6 text-[18vw] md:text-[11vw] leading-[0.82]">
-              The<br />
-              <span className="text-trt-red">24.</span>
+            <p className="text-[11px] uppercase tracking-[0.25em] text-trt-red">Access the League</p>
+            <h1 className="font-display mt-6 text-[16vw] md:text-[10vw] leading-[0.85]">
+              TRT<br />
+              <span className="text-trt-red">Membership.</span>
             </h1>
           </Reveal>
           <Reveal delay={0.15}>
             <p className="mt-8 max-w-lg text-lg text-white/70 leading-relaxed">
-              A private Founders Circle helping build the future of TRT. Twenty-four legacy positions. Once filled, never reopened.
+              Be there from the first tip-off. Secure your membership to support your franchise, get exclusive merchandise, and unlock priority access to all events.
             </p>
           </Reveal>
           <Reveal delay={0.25}>
-            <div className="mt-10 flex gap-3">
-              <Link
-                to="/contact"
+            <div className="mt-10">
+              <a
+                href="#tiers"
                 className="group inline-flex items-center gap-2 px-6 py-3.5 text-[11px] uppercase tracking-[0.18em] font-semibold bg-trt-red text-white hover:bg-white hover:text-black transition-all"
               >
-                Apply for a Position <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-              </Link>
+                View Tiers <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+              </a>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* Tracker */}
-      <section className="border-t border-white/10 py-20">
-        <div className="container-x max-w-3xl">
-          <Reveal>
-            <div className="flex items-center justify-between mb-8">
-              <p className="text-[11px] uppercase tracking-[0.2em] text-white/60">Founder Tracker</p>
-              <span className="flex items-center gap-2 text-[11px] uppercase tracking-[0.15em] text-white/60">
-                <span className="h-2 w-2 rounded-full bg-trt-red animate-pulse-dot" />
-                Live
-              </span>
-            </div>
-            <div className="grid grid-cols-6 gap-2">
-              {Array.from({ length: 24 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="aspect-square border border-white/15 flex items-center justify-center text-[11px] font-mono text-white/40 hover:border-trt-red hover:text-trt-red transition-colors"
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-              ))}
-            </div>
-            <div className="mt-6 flex items-baseline justify-between border-t border-white/10 pt-4">
-              <span className="text-[11px] uppercase tracking-[0.2em] text-white/50">Positions Available</span>
-              <span className="font-display text-2xl">24 / 24</span>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Tiers */}
-      <section className="border-t border-white/10 py-24 md:py-36">
+      {/* Tiers Section */}
+      <section id="tiers" className="border-t border-white/10 py-24 md:py-36 scroll-mt-20">
         <div className="container-x">
           <Reveal>
-            <p className="text-[11px] uppercase tracking-[0.25em] text-trt-red mb-3">Pricing Tiers</p>
-            <h2 className="font-display text-5xl md:text-6xl leading-[0.9] mb-16">Choose your seat<br />in history.</h2>
+            <p className="text-[11px] uppercase tracking-[0.25em] text-trt-red mb-3">Options</p>
+            <h2 className="font-display text-5xl md:text-6xl leading-[0.9] mb-16">Choose your level<br />of access.</h2>
           </Reveal>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
-            {TIERS_DISPLAY.map((tier, i) => (
-              <Reveal key={tier.label} delay={i * 0.07}>
-                <div className="bg-black p-8 flex flex-col h-full">
+          <div className="grid md:grid-cols-3 gap-px bg-white/10 border border-white/10">
+            {MEMBERSHIP_TIERS.map((tier, i) => (
+              <Reveal key={tier.label} delay={i * 0.08}>
+                <div className={`p-8 flex flex-col h-full bg-black relative ${tier.featured ? "border-t-2 border-trt-red" : ""}`}>
+                  {tier.featured && (
+                    <span className="absolute top-0 right-8 -translate-y-1/2 bg-trt-red text-white text-[9px] uppercase tracking-widest px-3 py-1 font-semibold">
+                      Most Popular
+                    </span>
+                  )}
                   <div className="flex items-baseline justify-between">
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-trt-red">{tier.label}</p>
-                    <p className="text-[10px] text-white/40">#{tier.positions}</p>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-trt-red font-semibold">{tier.label}</p>
                   </div>
-                  <p className="font-display text-4xl mt-4">{tier.price}</p>
-                  <ul className="mt-8 space-y-3 flex-1">
+                  <div className="mt-6 flex items-baseline gap-1">
+                    <span className="font-display text-5xl">{tier.price}</span>
+                    <span className="text-white/40 text-xs font-mono">/ {tier.period}</span>
+                  </div>
+                  <p className="mt-4 text-xs text-white/50 leading-relaxed min-h-[40px]">{tier.desc}</p>
+                  <ul className="mt-8 space-y-4 flex-1">
                     {tier.perks.map((p) => (
                       <li key={p} className="flex items-start gap-3 text-sm text-white/70">
                         <Check size={14} className="text-trt-red shrink-0 mt-0.5" />
-                        {p}
+                        <span>{p}</span>
                       </li>
                     ))}
                   </ul>
                   <Link
                     to="/contact"
-                    className="mt-8 w-full inline-flex items-center justify-center gap-2 py-3 text-[11px] uppercase tracking-[0.18em] border border-white/20 hover:border-trt-red hover:text-trt-red transition-colors"
+                    className={`mt-10 w-full inline-flex items-center justify-center gap-2 py-3.5 text-[11px] uppercase tracking-[0.18em] font-semibold transition-all ${
+                      tier.featured
+                        ? "bg-trt-red text-white hover:bg-white hover:text-black"
+                        : "border border-white/20 hover:border-trt-red hover:text-trt-red"
+                    }`}
                   >
-                    Apply <ArrowRight size={12} />
+                    Select Membership <ArrowRight size={12} />
                   </Link>
                 </div>
               </Reveal>
@@ -167,24 +143,24 @@ function MembershipPage() {
         </div>
       </section>
 
-      {/* FAQ / what is this */}
+      {/* FAQs */}
       <section className="border-t border-white/10 py-24 bg-black">
         <div className="container-x max-w-3xl">
           <Reveal>
-            <h2 className="font-display text-4xl md:text-5xl mb-12">What is The 24?</h2>
+            <h2 className="font-display text-4xl md:text-5xl mb-12">Frequently Asked Questions</h2>
           </Reveal>
           {[
             {
-              q: "Why only 24 positions?",
-              a: "The 24 is intentionally limited. When you build something, you want it in the hands of the right people — those who genuinely believe in TRT's mission and want to shape it from the inside.",
+              q: "When will the season tickets start?",
+              a: "TRT's inaugural season is set to tip off in early 2026. Season Pass and Courtside VIP members will receive their ticket links and franchise packages in Fall 2025.",
             },
             {
-              q: "What does a founding member actually get?",
-              a: "Beyond the tangible perks — tickets, jerseys, access — founders become part of the inner community building this property. This is a relationship, not just a transaction.",
+              q: "Can I choose which franchise I support?",
+              a: "Yes. When purchasing a Season Pass or Courtside VIP membership, you can designate it to any of our six founding franchises: Downtown Royals, Scarborough East, Brampton Kings, Vaughan Heights, Mississauga Tide, or Durham Storm.",
             },
             {
-              q: "Once positions are filled, what happens?",
-              a: "The Founders Circle closes. Permanently. There will be no re-opens, waitlists, or exceptions. That exclusivity is part of what makes this meaningful.",
+              q: "What is the difference between TRT Membership and The 24?",
+              a: "TRT Membership provides access to season tickets, discounts, and standard fan perks. The 24 is a separate, private Founders Circle offering 24 permanent legacy positions with Advisory Council input and lifetime recognition.",
             },
           ].map((item, i) => (
             <Reveal key={item.q} delay={i * 0.08}>
