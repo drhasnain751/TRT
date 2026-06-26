@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { ArrowRight, ArrowDown, MapPin, Calendar, Ticket, ShoppingBag } from "lucide-react";
 import { Nav } from "@/components/trt/Nav";
 import { Footer } from "@/components/trt/Footer";
@@ -62,20 +62,108 @@ function Index() {
 
 /* ── Games Ticker Bar ─────────────────────────────── */
 function GamesTickerBar() {
+  const [gameScores, setGameScores] = useState<Record<string, { homeScore: number; awayScore: number }>>({});
+  const [playerScores, setPlayerScores] = useState<Record<string, number>>({});
+
+  const upcomingGame = UPCOMING_GAMES[0];
+  const gameKey = `${upcomingGame.home}_${upcomingGame.away}`;
+  const score = gameScores[gameKey] || { homeScore: 0, awayScore: 0 };
+
+  const homeTeam = FRANCHISES.find((f) => f.city === "Scarborough") || { players: [] };
+  const awayTeam = FRANCHISES.find((f) => f.city === "Mississauga") || { players: [] };
+  const homePlayers = homeTeam.players.slice(0, 2);
+  const awayPlayers = awayTeam.players.slice(0, 2);
+
+  const incrementPlayerPoints = (playerId: string, team: "home" | "away") => {
+    setPlayerScores((prev) => ({
+      ...prev,
+      [playerId]: (prev[playerId] || 0) + 1,
+    }));
+
+    setGameScores((prev) => {
+      const current = prev[gameKey] || { homeScore: 0, awayScore: 0 };
+      return {
+        ...prev,
+        [gameKey]: {
+          homeScore: team === "home" ? current.homeScore + 1 : current.homeScore,
+          awayScore: team === "away" ? current.awayScore + 1 : current.awayScore,
+        },
+      };
+    });
+  };
+
   return (
-    <div className="fixed top-16 md:top-20 inset-x-0 z-40 bg-trt-red/95 backdrop-blur-sm overflow-hidden" style={{ height: "36px" }}>
-      <div className="flex items-center h-full animate-marquee whitespace-nowrap">
-        {[...UPCOMING_GAMES, ...UPCOMING_GAMES].map((g, i) => (
-          <span key={i} className="inline-flex items-center gap-3 px-8 h-full text-[11px] uppercase tracking-[0.15em] text-white font-semibold border-r border-white/20">
-            <span className="text-white/70">{g.date}</span>
-            <span>{g.home}</span>
-            <span className="text-white/50">vs</span>
-            <span>{g.away}</span>
-            <span className="text-white/60">|</span>
-            <span className="text-white/70">{g.time}</span>
-          </span>
-        ))}
+    <div className="fixed top-16 md:top-20 inset-x-0 z-40 bg-trt-red backdrop-blur-sm overflow-hidden">
+      <div className="px-4 md:px-8 py-2 md:py-3">
+        <div className="flex items-center justify-between gap-3">
+          {/* Game Info - Compact */}
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap items-center gap-2 text-white">
+              <span className="text-xs md:text-sm font-semibold">{upcomingGame.home}</span>
+              <span className="text-[10px] text-white/60">vs</span>
+              <span className="text-xs md:text-sm font-semibold">{upcomingGame.away}</span>
+              <span className="text-[9px] text-white/50">•</span>
+              <span className="text-[9px] text-white/70">{upcomingGame.date}</span>
+              <span className="text-[9px] text-white/50">•</span>
+              <span className="text-[9px] text-white/70">{upcomingGame.venue}</span>
+            </div>
+          </div>
+
+          {/* Score Display - Minimal */}
+          <div className="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-2xl flex-shrink-0">
+            <div className="text-center">
+              <div className="text-lg font-bold text-white">{score.homeScore}</div>
+              <div className="text-[8px] text-white/60 uppercase">SBR</div>
+            </div>
+            <div className="text-white/40">:</div>
+            <div className="text-center">
+              <div className="text-lg font-bold text-white">{score.awayScore}</div>
+              <div className="text-[8px] text-white/60 uppercase">MIS</div>
+            </div>
+          </div>
+
+          {/* Score Buttons */}
+          <div className="flex gap-1 flex-shrink-0">
+            <button
+              onClick={() => {
+                setGameScores((prev) => ({
+                  ...prev,
+                  [gameKey]: { homeScore: score.homeScore + 1, awayScore: score.awayScore },
+                }));
+              }}
+              className="px-2 py-1 bg-white text-trt-red text-[9px] font-semibold uppercase rounded-full hover:bg-white/90 transition-colors"
+            >
+              +1
+            </button>
+            <button
+              onClick={() => {
+                setGameScores((prev) => ({
+                  ...prev,
+                  [gameKey]: { homeScore: score.homeScore, awayScore: score.awayScore + 1 },
+                }));
+              }}
+              className="px-2 py-1 bg-white text-trt-red text-[9px] font-semibold uppercase rounded-full hover:bg-white/90 transition-colors"
+            >
+              +1
+            </button>
+          </div>
+        </div>
       </div>
+
+      {UPCOMING_GAMES.length > 1 ? (
+        <div className="border-t border-white/20 overflow-hidden bg-trt-red/50">
+          <div className="flex items-center h-6 animate-marquee whitespace-nowrap">
+            {[...UPCOMING_GAMES.slice(1), ...UPCOMING_GAMES.slice(1)].map((g, i) => (
+              <span key={i} className="inline-flex items-center gap-2 px-6 h-full text-[8px] uppercase tracking-[0.15em] text-white/70 font-semibold border-r border-white/20">
+                <span>{g.date}</span>
+                <span>{g.home}</span>
+                <span className="text-white/50">vs</span>
+                <span>{g.away}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -91,7 +179,7 @@ function Hero() {
     <section
       ref={ref}
       className="relative h-[100svh] min-h-[640px] w-full overflow-hidden"
-      style={{ paddingTop: "calc(4rem + 36px)" }}
+      style={{ paddingTop: "calc(8rem + 36px)" }}
     >
       <motion.div style={{ y }} className="absolute inset-0">
         <img
@@ -142,13 +230,13 @@ function Hero() {
             <div className="flex flex-wrap gap-3">
               <Link
                 to="/franchises"
-                className="group inline-flex items-center gap-2 px-6 py-3.5 text-[11px] uppercase tracking-[0.18em] font-semibold bg-trt-red text-white hover:bg-white hover:text-black transition-all duration-300"
+                className="group inline-flex items-center gap-2 px-6 py-3.5 text-[11px] uppercase tracking-[0.18em] font-semibold bg-trt-red text-white hover:bg-white hover:text-black transition-all duration-300 rounded-xl"
               >
                 Explore Franchises <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/membership"
-                className="group inline-flex items-center gap-2 px-6 py-3.5 text-[11px] uppercase tracking-[0.18em] font-semibold border border-white/20 hover:border-white transition-all duration-300"
+                className="group inline-flex items-center gap-2 px-6 py-3.5 text-[11px] uppercase tracking-[0.18em] font-semibold border border-white/20 hover:border-white transition-all duration-300 rounded-xl"
               >
                 TRT Membership <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
               </Link>
