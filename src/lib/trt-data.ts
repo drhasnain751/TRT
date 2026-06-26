@@ -508,9 +508,5 @@ export function priceForFounder(n: number): number {
 }
 
 export const UPCOMING_GAMES = [
-  { home: "Downtown Royals", away: "Brampton Kings", date: "Jan 15, 2026", time: "7:30 PM", venue: "Downtown Arena" },
-  { home: "Scarborough East", away: "Durham Storm", date: "Jan 17, 2026", time: "7:00 PM", venue: "Scarborough Civic" },
-  { home: "Vaughan Heights", away: "Mississauga Tide", date: "Jan 19, 2026", time: "6:30 PM", venue: "Vaughan Performance" },
-  { home: "Brampton Kings", away: "Scarborough East", date: "Jan 22, 2026", time: "7:30 PM", venue: "CAA Centre" },
-  { home: "Mississauga Tide", away: "Downtown Royals", date: "Jan 24, 2026", time: "8:00 PM", venue: "Paramount Fine Foods" },
+  { home: "Scarborough", away: "Mississauga", date: "Summer 2026", time: "TBC", venue: "PRO AM" },
 ];
