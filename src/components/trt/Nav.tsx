@@ -4,12 +4,12 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { TrtLogo } from "./TrtLogo";
 
 const FRANCHISE_LINKS = [
-  { slug: "brampton", city: "Brampton Kings" },
-  { slug: "vaughan", city: "Vaughan Heights" },
-  { slug: "mississauga", city: "Mississauga Tide" },
-  { slug: "durham", city: "Durham Storm" },
-  { slug: "scarborough", city: "Scarborough East" },
-  { slug: "downtown-toronto", city: "Downtown Royals" },
+  { slug: "brampton", city: "Brampton" },
+  { slug: "downtown-toronto", city: "Downtown" },
+  { slug: "durham", city: "Durham" },
+  { slug: "mississauga", city: "Mississauga" },
+  { slug: "scarborough", city: "Scarborough" },
+  { slug: "vaughan", city: "Vaughan" },
 ];
 
 interface NavLinkItem {
