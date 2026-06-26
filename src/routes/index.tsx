@@ -261,7 +261,7 @@ function Hero() {
 }
 
 /* ── Quick Stats Section ──────────────────────────── */
-function QuickStatsSection() {
+/* function QuickStatsSection() {
   const stats = [
     { n: "6", l: "Franchises" },
     { n: "2", l: "Levels" },
@@ -334,7 +334,7 @@ function FeaturedStory() {
       </div>
     </section>
   );
-}
+} */
 
 /* ── Franchise Grid ───────────────────────────────── */
  function FranchiseGrid() {
