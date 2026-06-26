@@ -42,13 +42,7 @@ export function Nav() {
   }, []);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled || open
-          ? "bg-black/95 backdrop-blur-xl border-b border-white/10"
-          : "bg-transparent"
-      }`}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 bg-black/95 backdrop-blur-xl border-b border-white/10 transition-all duration-500">
       <div className="container-x flex h-16 md:h-20 items-center justify-between">
         {/* Branded TRT Shield Logo */}
         <Link to="/" className="flex items-center gap-3 group" aria-label="TRT home">
