@@ -47,12 +47,12 @@ export function Footer() {
             <p className="text-[11px] uppercase tracking-[0.2em] text-white/40">Franchises</p>
             <ul className="mt-5 space-y-2 text-sm">
               {[
-                { slug: "downtown-toronto", city: "Downtown Royals" },
-                { slug: "scarborough", city: "Scarborough East" },
-                { slug: "brampton", city: "Brampton Kings" },
-                { slug: "vaughan", city: "Vaughan Heights" },
-                { slug: "mississauga", city: "Mississauga Tide" },
-                { slug: "durham", city: "Durham Storm" },
+                { slug: "brampton", city: "Brampton" },
+  { slug: "downtown-toronto", city: "Downtown" },
+  { slug: "durham", city: "Durham" },
+  { slug: "mississauga", city: "Mississauga" },
+  { slug: "scarborough", city: "Scarborough" },
+  { slug: "vaughan", city: "Vaughan" },
               ].map((f) => (
                 <li key={f.slug}>
                   <Link
