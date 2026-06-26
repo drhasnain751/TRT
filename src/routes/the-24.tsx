@@ -80,7 +80,7 @@ function The24Page() {
             <p className="text-[11px] uppercase tracking-[0.25em] text-trt-red">Members Only</p>
             <h1 className="font-display mt-6 text-[18vw] md:text-[11vw] leading-[0.82]">
               The<br />
-              <span className="text-trt-red">24.</span>
+              <span className="text-trt-red">24</span>
             </h1>
           </Reveal>
           <Reveal delay={0.15}>
